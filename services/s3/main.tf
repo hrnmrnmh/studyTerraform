@@ -1,10 +1,10 @@
-resource aws_s3_bucket aohnostatics {
+resource aws_s3_bucket bucket {
   bucket = "aohnostatics"
 }
 
 resource aws_s3_object object {
   for_each = fileset("./services/s3/uploads/", "*")
-  bucket   = aws_s3_bucket.aohnostatics.id
+  bucket   = aws_s3_bucket.bucket.id
   key = "/${each.value}"
   source = "./services/s3/uploads/${each.value}"
   etag = filemd5("./services/s3/uploads/${each.value}")
