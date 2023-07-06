@@ -14,6 +14,11 @@ resource aws_cloudfront_distribution static-www {
   enabled = true
 
   default_root_object = "index.html"
+  custom_error_response {
+    error_code = 403
+    response_page_path = "/index.html"
+    response_code = 200
+  }
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
